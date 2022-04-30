@@ -25,23 +25,23 @@ ReloadMontageSection(FName(TEXT("Reload")))
 	CollisionBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
 }
 
-void AInGameItem::BeginPlay()
+void AHitScanWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 	
 	
-	CollisionVolume->OnComponentBeginOverlap.AddDynamic(this, &AInGameItem::OnSphereOverlap);
-	CollisionVolume->OnComponentEndOverlap.AddDynamic(this, &AInGameItem::OnSphereEndOverlap);
+	CollisionVolume->OnComponentBeginOverlap.AddDynamic(this, &AHitScanWeapon::OnSphereOverlap);
+	CollisionVolume->OnComponentEndOverlap.AddDynamic(this, &AHitScanWeapon::OnSphereEndOverlap);
 
 	SetItemProperties(ItemState);
 }
 
-void AInGameItem::Tick(float DeltaTime)
+void AHitScanWeapon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
 
-void AInGameItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AHitScanWeapon::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor)	{
 		auto Character = Cast<AHitScanCharacter>(OtherActor);
@@ -55,7 +55,7 @@ void AInGameItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	
 }
 
-void AInGameItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void AHitScanWeapon::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	if (OtherActor) {
 		auto Character = Cast<AMainCharacter>(OtherActor);
@@ -65,7 +65,7 @@ void AInGameItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, A
 	}
 }
 
-void AInGameItem::SetItemProperties(EItemState State) {
+void AHitScanWeapon::SetItemProperties(EItemState State) {
 	switch (State)
 	{
 	case EItemState::EIS_Pickup:
@@ -160,13 +160,13 @@ void AInGameItem::SetItemProperties(EItemState State) {
 	
 }
 
-void AInGameItem::SetItemState(EItemState State)
+void AHitScanWeapon::SetItemState(EItemState State)
 {
 	ItemState = State;
 	SetItemProperties(State);
 }
 
-void AWeaponBase::DecrementAmmo() {
+void AHitScanWeapon::DecrementAmmo() {
 	if (Ammo - 1 <= 0) {
 		Ammo = 0;
 	}
@@ -174,7 +174,7 @@ void AWeaponBase::DecrementAmmo() {
 		--Ammo;
 	}
 }
-void AWeaponBase::ReloadAmmo(int32 Amount) {
+void AHitScanWeapon::ReloadAmmo(int32 Amount) {
 
 	checkf(Ammo + Amount <= MagazineSize, TEXT("Weapon Magazine is full"));
 	Ammo += Amount;
