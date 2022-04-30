@@ -1,7 +1,7 @@
 #include "HitScanWeapon.h"
 #include "Components/SphereComponent.h"
 #include "Components/SkeletalMeshComponent.h"
-#include "HitScanharacter.h"
+#include "HitScanCharacter.h"
 
 AHitScanWeapon::AHitScanWeapon(): ItemState(EItemState::EIS_Pickup), Ammo(25), MagazineSize(25),,AmmoType(EAmmoType::EAT_RifleAmmo),
 ReloadMontageSection(FName(TEXT("Reload")))
