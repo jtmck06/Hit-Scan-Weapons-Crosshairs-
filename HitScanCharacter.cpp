@@ -1,8 +1,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
-#include "WeaponBase.h"
-#include "InGameItem.h"
+#include "HitScanWeapon.h"
 #include "AmmoPickUps.h"
 
 AHitScanCharacter::AHitScanCharacter() : BaseTurnRate(45.f), BaseLookUpRate(45.f), ADSTurnRate(20.f), ADSLookUpRate(20.f), HipTurnRate(90.f), HipLookUpRate(90.f),MouseADSTurnRate(0.2f),
