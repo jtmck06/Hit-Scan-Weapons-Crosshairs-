@@ -94,7 +94,7 @@ void AHitScanCharacter::RMouseButtonUp() {
 	bAiming= false;
 }
 
-void AHitScanCharacter::EquipWeapon(AWeaponBase* Weapon) {
+void AHitScanCharacter::EquipWeapon(AHitScanWeapon* Weapon) {
 	if (Weapon) {
 		const USkeletalMeshSocket* HandSocket = GetMesh()->GetSocketByName(FName("hand_rSocket_Gun"));
 		if (HandSocket) {
@@ -108,11 +108,11 @@ void AHitScanCharacter::EquipWeapon(AWeaponBase* Weapon) {
 
 }
 
-AWeaponBase* AHitScanCharacter::SpawnDefaultWeapon() {
+AHitScanWeapon* AHitScanCharacter::SpawnDefaultWeapon() {
 	//Check the TSubclssOf variable
 	if (DefaultWeaponType) {
 		//Spawn the weapon
-		return  GetWorld()->SpawnActor<AWeaponBase>(DefaultWeaponType);
+		return  GetWorld()->SpawnActor<AHitScanWeapon>(DefaultWeaponType);
 	}
 	return nullptr;
 }
