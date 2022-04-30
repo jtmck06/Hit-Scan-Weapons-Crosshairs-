@@ -69,13 +69,16 @@ protected:
   //Checks to see if i have the proper ammo for the weapon
 	bool ReserveAmmo();
 
-	class AWeaponBase* SpawnDefaultWeapon();
+	class AHitScanWeapon* SpawnDefaultWeapon();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Items, meta = (AllowPrivateAccess = "true"))
 	int32 AmmoReserves;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
-	TSubclassOf<AWeaponBase> DefaultWeaponType;
+	TSubclassOf<AHitScanWeapon> DefaultWeaponType;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Items")
+	class AHitScanWeapon* ActiveOverlappingItem;
   
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Combat, meta = (AllowPrivateAccess = "true"))
 	class USoundCue* FiringSound;
@@ -160,9 +163,9 @@ public:
   //Call every frame
   virtual void  Tick(float DeltaTime) override;
   
-  void EquipWeapon(AWeaponBase* Weapon);
+  void EquipWeapon(AHitScanWeapon* Weapon);
   UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
-	AWeaponBase* EquippedWeapon;
+	AHitScanWeapon* EquippedWeapon;
   
   UFUNCTION(BlueprintCallable)
 	float GetCrosshairSpreadMultiplier() const;
