@@ -39,6 +39,15 @@ void AHitScanCharacter::BeginPlay()
   //Spawns a default weapon and equips it 
 	EquipWeapon(SpawnDefaultWeapon());
 }
+void AMainCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	CameraInterpFOV(DeltaTime);
+	SetAimSensitivityRates(DeltaTime);
+	CalculateCrosshairSpread(DeltaTime);
+}
+
 void AHitScanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
   PlayerInputComponent->BindAction("NormalAttack", IE_Pressed, this, &AMainCharacter::LMouseButtonDwn);
