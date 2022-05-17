@@ -7,8 +7,29 @@
 AHitScanCharacter::AHitScanCharacter() : BaseTurnRate(45.f), BaseLookUpRate(45.f), ADSTurnRate(20.f), ADSLookUpRate(20.f), HipTurnRate(90.f), HipLookUpRate(90.f),MouseADSTurnRate(0.2f),
 MouseADSLookUpRate(0.2f), MouseHipTurnRate(1.0f), MouseHipLookUpRate(1.0f), RateOfFire(0.175f), bAiming(false),CameraDefualtFOV(0.f),CameraZoomedFOV(60.f), CurrentFOV(0.f),CameraInterpSpeed(20.f),
   WeaponFireDuration(0.05f), ReserveAmmo_Rifle(75), ReserveAmmo_SMG(18)
-  {
-    
+  {  
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
+	  
+	//Creates Spring Arm. Pulls towards player if collision
+	CameraArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraArm"));
+	CameraArm->SetupAttachment(RootComponent);
+	CameraArm->TargetArmLength = 350.f;//Camera follow distance
+	CameraArm->bUsePawnControlRotation = true;//Rotate arm based on controller
+	CameraArm->SocketOffset = FVector(0.f, 50.f, 50.f);
+	/*//Set size for collsion capsule
+	GetCapsuleComponent()->SetCapsuleSize(48.f, 105.f);*/
+
+	//Creates Camera that follow Character
+	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
+	FollowCamera->SetupAttachment(CameraArm, USpringArmComponent::SocketName);
+	//camera will rotate based on the spring arm which rotates based on the character
+	FollowCamera->bUsePawnControlRotation = true;
+
+	//Keep character from rotating with camera
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = true;
+	bUseControllerRotationRoll = false;
   }
 
 void AHitScanCharacter::BeginPlay()
