@@ -161,14 +161,15 @@ private:
   
 public:
   //Call every frame
-  virtual void  Tick(float DeltaTime) override;
+  	virtual void  Tick(float DeltaTime) override;
   
-  void EquipWeapon(AHitScanWeapon* Weapon);
-  UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+  	void EquipWeapon(AHitScanWeapon* Weapon);
+	
+  	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	AHitScanWeapon* EquippedWeapon;
   
-  UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable)
 	float GetCrosshairSpreadMultiplier() const;
   
-  FORCEINLINE bool GetAiming()const { return bAiming; }
+  	FORCEINLINE bool GetAiming()const { return bAiming; }
   };
