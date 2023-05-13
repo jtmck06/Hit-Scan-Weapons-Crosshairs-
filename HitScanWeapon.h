@@ -14,6 +14,17 @@ enum class EItemState : uint8
 	EIS_MAX UMETA(DisplayName = "DefaultMAX")
 };
 
+UENUM(BlueprintType)
+enum class EWeaponType : uint8
+{
+	EWT_AutoRifle UMETA(DisplayName = "AutoRifle"),
+	EWT_SemiAutoRifle UMETA(DisplayName = "SemiAutoRifle"),
+	EWT_Pistol UMETA(DisplayName = "Pistol"),
+	EWT_SMG UMETA(DisplayName = "SMG"),
+	
+	EWT_MAX UMETA(DisplayName = "DefaultMAX")
+};
+
 UCLASS()
 class HITSCANPROJECT7_API HitScanWeapon : public AActor
 {
@@ -45,6 +56,18 @@ private:
   
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item| Properties", meta = (AllowPrivateAccess = "true"))
 	EItemState ItemState;
+	
+	/** The type of weapon */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Properties", meta = (AllowPrivateAccess = "true"))
+	EWeaponType WeaponType;
+
+	/** The type of ammo for this weapon */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Properties", meta = (AllowPrivateAccess = "true"))
+	EAmmoType AmmoType;
+
+	/** FName for the Reload Montage Section */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Properties", meta = (AllowPrivateAccess = "true"))
+	FName ReloadMontageSection;
   
   //Pointer to the character
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item| Properties", meta = (AllowPrivateAccess = "true"))
