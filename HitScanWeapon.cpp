@@ -60,8 +60,8 @@ void AHitScanWeapon::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent
 {
 	if (OtherActor) {
 		auto Character = Cast<AMainCharacter>(OtherActor);
-		if (Main) {
-			Main->IncrementOverlappedItems(-1);
+		if (Character) {
+			Character->IncrementOverlappedItems(-1);
 		}
 	}
 }
