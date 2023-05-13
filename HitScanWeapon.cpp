@@ -1,5 +1,6 @@
 #include "HitScanWeapon.h"
 #include "Components/SphereComponent.h"
+#include "Components/BoxComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "HitScanCharacter.h"
 
