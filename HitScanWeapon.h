@@ -55,9 +55,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item| Collision", meta = (AllowPrivateAccess = "true"))
 	class UBoxComponent* CollisionBox;
-  
-protected:
-virtual void BeginPlay() override;
 
 public:
 	// Called every frame
