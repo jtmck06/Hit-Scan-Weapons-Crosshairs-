@@ -5,7 +5,7 @@ UENUM(BlueprintType)
 enum class ECombatState : uint8
 {
 	ECS_Unoccupied UMETA(DisplayName = "Unoccupied"),
-	ECS_Attacking UMETA(DisplayName = "Shooting"),
+	ECS_Shooting UMETA(DisplayName = "Shooting"),
 	ECS_Reloading UMETA(DisplayName = "Reloading"),
 	ECS_Equipping UMETA(DisplayName = "Equipping"),
 
