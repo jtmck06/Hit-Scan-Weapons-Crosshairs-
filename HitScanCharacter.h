@@ -1,6 +1,17 @@
 #include "AmmoType.h"
 #include "HitScanCharacter.generated.h"
 
+UENUM(BlueprintType)
+enum class ECombatState : uint8
+{
+	ECS_Unoccupied UMETA(DisplayName = "Unoccupied"),
+	ECS_Attacking UMETA(DisplayName = "Shooting"),
+	ECS_Reloading UMETA(DisplayName = "Reloading"),
+	ECS_Equipping UMETA(DisplayName = "Equipping"),
+
+	ECS_NAX UMETA(DisplayName = "DefaultMAX")
+};
+
 UCLASS()
 class HITSCANROJECT7_API AHitScanCharacter : public ACharacter
 {
