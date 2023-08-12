@@ -265,7 +265,6 @@ bool AHitScanCharacter::TraceUnderCrosshairs(FHitResult& OutHitResult, FVector& 
 		UGameplayStatics::GetPlayerController(this, 0), CrosshairLocation, CrosshairWorldPosition, CrosshairWorldDirection);
 
 	if (bScreenToWorld) {
-		//FHitResult ScreenTraceHit;
 		// Trace from Crosshair world location outward
 		const FVector Start{CrosshairWorldPosition };
 		const FVector End{ Start + CrosshairWorldDirection * 50'000.f };
